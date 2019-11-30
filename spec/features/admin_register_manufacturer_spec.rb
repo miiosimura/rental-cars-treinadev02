@@ -10,5 +10,6 @@ feature 'Admin register manufacturer' do
     click_on 'Enviar'
 
     expect(page).to have_content('Fiat')
+    expect(page).to have_link('Voltar')
   end
 end

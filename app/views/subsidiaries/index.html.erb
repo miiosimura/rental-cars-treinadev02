@@ -4,6 +4,8 @@
   <p>Não existem filiais cadastradas no sistema</p>
 <% end %>
 
+<%= link_to 'Registrar nova filial', new_subsidiary_path %><br/><br/>
+
 <% @subsidiaries.each do |subsidiary| %>
-  <%= link_to subsidiary.name, subsidiary_path(subsidiary) %>
+  <li><%= link_to subsidiary.name, subsidiary_path(subsidiary) %></li>
 <% end %>
