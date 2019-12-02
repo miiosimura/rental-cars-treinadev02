@@ -12,8 +12,27 @@ class ManufacturersController < ApplicationController
   end
 
   def create
-    @manufacturer = Manufacturer.create(manufacturer_params)
-    redirect_to @manufacturer #passando um objeto, o rails ja reconhece que deve ser feito um show, pegando seu id
+    @manufacturer = Manufacturer.new(manufacturer_params)
+    
+    if @manufacturer.save
+      redirect_to @manufacturer
+    else
+      render :new #usando a view do new, mas ainda esta fazendo o create. Dessa forma, ele mantem os dados que estao no form
+    end
+  end
+
+  def edit
+    @manufacturer = Manufacturer.find(params[:id])
+  end
+
+  def update
+    @manufacturer = Manufacturer.find(params[:id])
+    
+    if @manufacturer.update(manufacturer_params)
+      redirect_to @manufacturer
+    else
+      render :edit
+    end
   end
 
   private
