@@ -1,0 +1,11 @@
+<h3>Clientes</h3>
+
+<% if @clients.empty? %>
+  <p>Não existem clientes cadastrados no sistema</p>
+<% end %>
+
+<%= link_to 'Registrar novo cliente', new_client_path %><br/><br/>
+
+<% @clients.each do |client| %>
+  <li><%= link_to client.name, client_path(client) %></li>
+<% end %>

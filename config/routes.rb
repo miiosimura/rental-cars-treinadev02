@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   resources :manufacturers
   resources :subsidiaries, only: [:index, :show, :new, :create]
   resources :categories, only: [:index, :show, :new, :create]
+  resources :clients, only: [:index, :show, :new, :create]
 end

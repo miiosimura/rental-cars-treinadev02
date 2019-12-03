@@ -1,0 +1,9 @@
+<%= form_with model: @client, local: true do |c| %>
+  <%= c.label :name, 'Nome' %>
+  <%= c.text_field(:name) %>
+  <%= c.label :cpf, 'CPF' %>
+  <%= c.text_field(:cpf) %>
+  <%= c.label :email, 'Email' %>
+  <%= c.text_field(:email) %>
+  <%= c.submit 'Enviar' %>
+<% end %>
