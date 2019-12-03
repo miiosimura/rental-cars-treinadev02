@@ -15,13 +15,13 @@ feature 'Admin viewer subsidiaries' do
 
   scenario 'and view subsidiaries links' do
     Subsidiary.create!(name: 'Almeida Cars', cnpj: '00.000.000-00', address: 'Alameda Santos, 1293')
-    Subsidiary.create!(name: 'R1', cnpj: '00.000.000-00', address: 'Alameda Santos, 1293')
+    Subsidiary.create!(name: 'R1 System', cnpj: '11.111.111-11', address: 'Rua Banana, 123')
 
     visit root_path
     click_on 'Filiais'
     
     expect(page).to have_link('Almeida Cars')
-    expect(page).to have_link('R1')
+    expect(page).to have_link('R1 System')
   end
   
   scenario 'and no subsidiary exists' do

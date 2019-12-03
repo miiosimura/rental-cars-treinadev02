@@ -1,13 +1,4 @@
 <h1>Registrar nova categoria</h1>
 
-<%= form_with model: @category, local: true do |c| %>
-  <%= c.label :name, 'Nome' %>
-  <%= c.text_field(:name) %>
-  <%= c.label :daily_rate, 'Diária' %>
-  <%= c.text_field(:daily_rate) %>
-  <%= c.label :car_insurance, 'Seguro do Carro' %>
-  <%= c.text_field(:car_insurance) %>
-  <%= c.label :third_party_insurance, 'Seguro contra Terceiros' %>
-  <%= c.text_field(:third_party_insurance) %>
-  <%= c.submit 'Enviar' %>
-<% end %>
+<%= render partial: "error_validate", locals: {zone: @zone} %>
+<%= render partial: "form", locals: {zone: @zone} %>
