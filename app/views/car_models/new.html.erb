@@ -1,0 +1,23 @@
+<h1>Registrar novo modelo</h1>
+
+<%= form_for @car_model do |f| %>
+  <%= f.label :name, 'Nome' %>
+  <%= f.text_field :name %>
+  
+  <%= f.label :year, 'Ano' %>
+  <%= f.text_field :year %>
+
+  <%= f.label :fuel_type, 'Combustivel' %>
+  <%= f.text_field :fuel_type %>
+
+  <%= f.label :motorization, 'Motorização' %>
+  <%= f.text_field :motorization %>
+
+  <%= f.label :manufacturer_id, 'Fabricante' %>
+  <%= f.collection_select(:manufacturer_id, @manufacturers, :id, :name) %>
+
+  <%= f.label :category_id, 'Categoria' %>
+  <%= f.collection_select(:category_id, @categories, :id, :name) %>
+
+  <%= f.submit 'Enviar' %>
+<% end %>
