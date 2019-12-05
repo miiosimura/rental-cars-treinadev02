@@ -1,3 +1,11 @@
 <h1>Modelos de Carro</h1>
 
-<%= link_to 'Registrar novo modelo', new_car_model_path %>
+<% if @car_models.empty? %>
+  <p>Não existem modelos de carro cadastrados no sistema</p>
+<% end %>
+
+<%= link_to 'Registrar novo modelo', new_car_model_path %><br/><br/>
+
+<% @car_models.each do |car_model| %>
+  <li><%= link_to car_model.name, car_model_path(car_model) %></li>
+<% end %>

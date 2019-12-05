@@ -15,6 +15,7 @@ class ManufacturersController < ApplicationController
     @manufacturer = Manufacturer.new(manufacturer_params)
     
     if @manufacturer.save
+      flash[:notice] = 'Fabricante registrado com sucesso!'
       redirect_to @manufacturer
     else
       render :new #usando a view do new, mas ainda esta fazendo o create. Dessa forma, ele mantem os dados que estao no form
@@ -29,6 +30,7 @@ class ManufacturersController < ApplicationController
     @manufacturer = Manufacturer.find(params[:id])
     
     if @manufacturer.update(manufacturer_params)
+      flash[:notice] = 'Fabricante editado com sucesso!'
       redirect_to @manufacturer
     else
       render :edit

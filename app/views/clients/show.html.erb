@@ -1,6 +1,5 @@
 <h2><%= @client.name %></h2>
-<h3>CPF</h3>
-<p><%= @client.cpf %></p>
-<h3>Email</h3>
-<p><%= @client.email %></p><br/>
+<b>CPF</b> <%= @client.cpf %><br/>
+<b>Email</b> <%= @client.email %><br/><br/>
+<%= link_to 'Editar', edit_client_path %><br/>
 <%= link_to 'Voltar', root_path %>

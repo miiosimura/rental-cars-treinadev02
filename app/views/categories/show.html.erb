@@ -1,9 +1,6 @@
 <h2><%= @category.name %></h2>
-<h4>Diária</h4>
-R$ <%= @category.daily_rate %>
-<h4>Seguro do Carro</h4>
-R$ <%= @category.car_insurance %>
-<h4>Seguro contra Terceiros</h4>
-R$ <%= @category.third_party_insurance %><br/>
+<b>Diária</b> R$ <%= @category.daily_rate %><br/>
+<b>Seguro do Carro</b> R$ <%= @category.car_insurance %><br/>
+<b>Seguro contra Terceiros</b> R$ <%= @category.third_party_insurance %><br/><br/>
 <%= link_to 'Editar', edit_category_path %><br/>
 <%= link_to 'Voltar', root_path %>

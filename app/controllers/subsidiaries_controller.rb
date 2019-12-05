@@ -1,7 +1,7 @@
 class SubsidiariesController < ApplicationController
   def index
-     #metodo index vazio, ele faz automaticamente render :index
-     @subsidiaries = Subsidiary.all   
+    #metodo index vazio, ele faz automaticamente render :index
+    @subsidiaries = Subsidiary.all   
   end
 
   def show
@@ -16,6 +16,7 @@ class SubsidiariesController < ApplicationController
     @subsidiary = Subsidiary.new(subsidiary_params)
     
     if @subsidiary.save
+      flash[:notice] = 'Filial registrada com sucesso!'
       redirect_to @subsidiary
     else
       render :new
@@ -31,6 +32,7 @@ class SubsidiariesController < ApplicationController
     @subsidiary = Subsidiary.find(params[:id])
 
     if @subsidiary.update(subsidiary_params)
+      flash[:notice] = 'Filial editada com sucesso!'
       redirect_to @subsidiary
     else
       render :edit
