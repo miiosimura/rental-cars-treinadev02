@@ -1,11 +1,13 @@
 class ManufacturersController < ApplicationController
+  before_action :authenticate_user! #faz com que antes de rodar tudo, o usuario tenha que estar logado. Se fosse para estar logado em algumas acoes, so add o only
+  before_action :authorize_admin
+  before_action :set_manufacturer, only: [:show, :edit, :update]
+
   def index
     @manufacturers = Manufacturer.all
   end
 
-  def show
-    @manufacturer = Manufacturer.find(params[:id])
-  end
+  def show ; end
 
   def new
     @manufacturer = Manufacturer.new
@@ -22,13 +24,9 @@ class ManufacturersController < ApplicationController
     end
   end
 
-  def edit
-    @manufacturer = Manufacturer.find(params[:id])
-  end
+  def edit ; end
 
-  def update
-    @manufacturer = Manufacturer.find(params[:id])
-    
+  def update  
     if @manufacturer.update(manufacturer_params)
       flash[:notice] = 'Fabricante editado com sucesso!'
       redirect_to @manufacturer
@@ -38,6 +36,14 @@ class ManufacturersController < ApplicationController
   end
 
   private
+  def set_manufacturer
+    @manufacturer = Manufacturer.find(params[:id])
+  end
+
+  def authorize_admin
+    redirect_to root_path, notice: 'Voce nao possui autorizacao para essa acao' unless current_user.admin? #redirecione para root_path A NAO SER que o usuario seja admin
+  end
+
   def manufacturer_params
     params.require(:manufacturer).permit(:name)
   end

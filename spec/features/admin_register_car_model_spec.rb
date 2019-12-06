@@ -21,7 +21,7 @@ feature 'Admin register car model' do
     click_on 'Enviar'
 
     expect(page).to have_content('Modelo registrado com sucesso!')
-    expect(page).to have_css('h1', text: 'Onix')
+    expect(page).to have_content('Onix')
     expect(page).to have_content('Ano: 2020')
     expect(page).to have_content('Motorização: 1.0')
     expect(page).to have_content('Combustivel: Flex')

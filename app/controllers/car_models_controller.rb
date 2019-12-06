@@ -17,7 +17,7 @@ class CarModelsController < ApplicationController
     @car_model = CarModel.new(car_model_params)
     
     if @car_model.save
-      flash[:notice] = 'Modelo de carro registrado com sucesso!'
+      flash[:notice] = 'Modelo registrado com sucesso!'
       redirect_to @car_model
     else
       @manufacturers = Manufacturer.all

@@ -9,7 +9,14 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>  
+  <body>
+    <% if user_signed_in? %>
+      <%= link_to 'Sair', destroy_user_session_path, method: :delete %> <!-- a rota de logout, é preciso escrever o metodo, pois as rotas que o devise cria o verbo dessa rota é do tipo DELETE e por isso é necessario descrever qual metodo sera usado -->
+    <% else %>
+      <%= link_to 'Entrar', new_user_session_path %>
+    <% end %>
+
+    <br/><%= render 'shared/menu'%>
     <%= notice %>
     <%= alert %>
     <%= yield %>

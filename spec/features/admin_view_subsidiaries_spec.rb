@@ -30,4 +30,16 @@ feature 'Admin viewer subsidiaries' do
     
     expect(page).to have_content('Não existem filiais cadastradas no sistema')
   end
+
+  scenario 'and must be logged in' do
+    visit manufacturers_path
+
+    expect(current_path).to eq new_user_session_path
+  end
+
+  #scenario 'and must be logged in' do
+    #visit root_path
+
+    #expect(page).not_to have_link('Filiais')
+  #end
 end
