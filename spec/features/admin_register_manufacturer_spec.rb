@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'Admin register manufacturer' do
   scenario 'successfully' do
-    user = User.create!(email: 'email@teste.com', password: '123456')
+    user = User.create!(email: 'email@teste.com', password: '123456', role: :admin)
     
     login_as(user, scope: :user)
     visit root_path
@@ -17,7 +17,7 @@ feature 'Admin register manufacturer' do
   end
 
   scenario 'and must fill in all fields' do
-    user = User.create!(email: 'email@teste.com', password: '123456')
+    user = User.create!(email: 'email@teste.com', password: '123456', role: :admin)
     
     login_as(user, scope: :user)
     visit new_manufacturer_path
@@ -40,14 +40,14 @@ feature 'Admin register manufacturer' do
   end
 
   scenario 'and must be logged in' do
-    visit new_manufacturer_path
+    visit manufacturers_path
 
     expect(current_path).to eq new_user_session_path
   end
 
-  #scenario 'and link to page disapear if not logged' do
-    #visit root_path
+  scenario 'and link to page disapear if not logged' do
+    visit root_path
 
-    #expect(page).not_to have_link('Fabricantes')
-  #end
+    expect(page).not_to have_link('Fabricantes')
+  end
 end

@@ -3,7 +3,9 @@ require 'rails_helper'
 feature 'Admin edits category' do
   scenario 'successfully' do
     Category.create!(name: 'Familiar', daily_rate: '100', car_insurance: '50', third_party_insurance: '25')
-    
+    user = User.create!(email: 'email@teste.com', password: '123456', role: :admin)
+
+    login_as(user, scope: :user)    
     visit root_path
     click_on 'Categorias'
     click_on 'Familiar'
@@ -16,7 +18,9 @@ feature 'Admin edits category' do
 
   scenario 'and must fill in all fields' do
     Category.create!(name: 'Familiar', daily_rate: '100', car_insurance: '50', third_party_insurance: '25')
+    user = User.create!(email: 'email@teste.com', password: '123456', role: :admin)
 
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Categorias'
     click_on 'Familiar'
@@ -36,7 +40,9 @@ feature 'Admin edits category' do
   scenario 'and name must be unique' do
     Category.create!(name: 'Familiar', daily_rate: '100', car_insurance: '50', third_party_insurance: '25')
     Category.create!(name: 'Sedã', daily_rate: '200', car_insurance: '60', third_party_insurance: '40')
+    user = User.create!(email: 'email@teste.com', password: '123456', role: :admin)
 
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Categorias'
     click_on 'Familiar'

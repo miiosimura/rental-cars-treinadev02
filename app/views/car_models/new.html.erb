@@ -1,4 +1,4 @@
 <h1>Registrar novo modelo</h1>
 
-<%= render partial: "error_validate", locals: {zone: @zone} %>
-<%= render partial: "form", locals: {zone: @zone} %>
+<%= render "shared/error_validate", object: @car_model %>
+<%= render "form" %>

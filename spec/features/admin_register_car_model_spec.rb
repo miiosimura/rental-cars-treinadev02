@@ -6,7 +6,9 @@ feature 'Admin register car model' do
     Manufacturer.create!(name: 'Honda')
     Category.create!(name: 'A', daily_rate: 100, car_insurance: 50, third_party_insurance: 90)
     Category.create!(name: 'B', daily_rate: 200, car_insurance: 150, third_party_insurance: 190)
+    user = User.create!(email: 'email@teste.com', password: '123456', role: :admin)
     
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Modelos de Carro'
     click_on 'Registrar novo modelo'
@@ -27,5 +29,17 @@ feature 'Admin register car model' do
     expect(page).to have_content('Combustivel: Flex')
     expect(page).to have_content('Fabricante: Chevrolet')
     expect(page).to have_content('Categoria: A')
+  end
+
+  scenario 'and must be logged in' do
+    visit car_models_path
+
+    expect(current_path).to eq new_user_session_path
+  end
+
+  scenario 'and link to page disapear if not logged' do
+    visit root_path
+
+    expect(page).not_to have_link('Modelos de Carro')
   end
 end

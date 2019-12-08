@@ -1,0 +1,7 @@
+<h2>Placa <%= @car.license_plate %></h2>
+<b>Cor </b><%= @car.color %><br/>
+<b>Quilometragem </b><%= @car.mileage %><br/>
+<b>Filial </b><%= @car.subsidiary.name %><br/>
+<b>Modelo </b><%= @car.car_model.name %><br/><br/>
+<%= link_to 'Editar', edit_car_path %><br/>
+<%= link_to 'Voltar', root_path %>

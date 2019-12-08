@@ -1,8 +1,0 @@
-<% if @client.errors.any? %>
-  <p>Você deve corrigir os seguintes erros:</p>
-  <ul>
-    <% @client.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>

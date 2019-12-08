@@ -1,0 +1,18 @@
+<%= form_with model: @car, local: true do |c| %>
+  <%= c.label :license_plate, 'Placa' %>
+  <%= c.text_field(:license_plate) %>
+  
+  <%= c.label :color, 'Cor' %>
+  <%= c.text_field(:color) %>
+  
+  <%= c.label :mileage, 'Quilometragem' %>
+  <%= c.text_field(:mileage) %>
+  
+  <%= c.label :subsidiary_id, 'Filial' %>
+  <%= c.collection_select(:subsidiary_id, @subsidiaries, :id, :name) %>
+  
+  <%= c.label :car_model_id, 'Modelo de Carro' %>
+  <%= c.collection_select(:car_model_id, @car_models, :id, :name) %>
+
+  <%= c.submit 'Enviar' %>  
+<% end %>

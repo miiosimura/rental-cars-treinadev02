@@ -1,11 +1,23 @@
-<h3>Carros Cadastrados</h3>
+<h3>Frota</h3>
 
 <% if @cars.empty? %>
   <p>Não existem carros cadastrados no sistema</p>
 <% end %>
 
-<%= link_to 'Registrar novo carro', new_car_path %><br/><br/>
+<%= link_to 'Registrar novo carro para frota', new_car_path %><br/><br/>
 
-<% @cars.each do |car| %>
-  <li><%=  %></li>
-<% end %>
+<table>
+  <tr>
+    <th>Filial</th>
+    <th>Placa</th>
+    <th>Modelo</th>
+  </tr>
+
+  <% @cars.each do |car| %>
+    <tr>
+      <td><%= link_to car.subsidiary.name, subsidiary_path(car.subsidiary_id) %></td>
+      <td><%= link_to car.license_plate, car_path(car) %></td>
+      <td><%= car.car_model.name %></td>
+    </tr>
+  <% end %>
+</table>

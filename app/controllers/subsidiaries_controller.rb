@@ -1,11 +1,14 @@
 class SubsidiariesController < ApplicationController
+  before_action :authenticate_user!
+  before_action :authorize_admin
+  before_action :set_subsidiary, only: [:show, :edit, :update]
+
   def index
     #metodo index vazio, ele faz automaticamente render :index
     @subsidiaries = Subsidiary.all   
   end
 
   def show
-    @subsidiary = Subsidiary.find(params[:id])
   end
 
   def new
@@ -25,12 +28,9 @@ class SubsidiariesController < ApplicationController
   end
 
   def edit
-    @subsidiary = Subsidiary.find(params[:id])
   end
 
   def update
-    @subsidiary = Subsidiary.find(params[:id])
-
     if @subsidiary.update(subsidiary_params)
       flash[:notice] = 'Filial editada com sucesso!'
       redirect_to @subsidiary
@@ -39,8 +39,22 @@ class SubsidiariesController < ApplicationController
     end
   end
 
+  def destroy
+    @subsidiary.destroy
+
+    redirect_to subsidiaries_path
+  end
+
   private
   def subsidiary_params
     params.require(:subsidiary).permit(:name, :cnpj, :address)
+  end
+
+  def authorize_admin
+    redirect_to root_path, notice: 'Voce nao possui autorizacao para essa acao' unless current_user.admin?
+  end
+
+  def set_subsidiary
+    @subsidiary = Subsidiary.find(params[:id])
   end
 end

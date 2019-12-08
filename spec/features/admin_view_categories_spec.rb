@@ -3,7 +3,9 @@ require 'rails_helper'
 feature 'Admin viewer categories' do
   scenario 'successfully' do
     Category.create!(name: 'Familiar', daily_rate: '100', car_insurance: '50', third_party_insurance: '25')
+    user = User.create!(email: 'email@teste.com', password: '123456', role: :admin)
 
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Categorias'
     click_on 'Familiar'
@@ -18,7 +20,9 @@ feature 'Admin viewer categories' do
   scenario 'and view categories links' do
     Category.create!(name: 'Familiar', daily_rate: '100', car_insurance: '50', third_party_insurance: '25')
     Category.create!(name: 'Sedã', daily_rate: '100', car_insurance: '50', third_party_insurance: '25')
+    user = User.create!(email: 'email@teste.com', password: '123456', role: :admin)
 
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Categorias'
 
@@ -27,6 +31,9 @@ feature 'Admin viewer categories' do
   end
 
   scenario 'and no category exists' do
+    user = User.create!(email: 'email@teste.com', password: '123456', role: :admin)
+
+    login_as(user, scope: :user)    
     visit root_path
     click_on 'Categorias'
 

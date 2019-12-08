@@ -1,7 +1,7 @@
-<% if @subsidiary.errors.any? %>
+<% if object.errors.any? %>
   <p>Você deve corrigir os seguintes erros:</p>
   <ul>
-    <% @subsidiary.errors.full_messages.each do |message| %>
+    <% object.errors.full_messages.each do |message| %>
       <li><%= message %></li>
     <% end %>
   </ul>

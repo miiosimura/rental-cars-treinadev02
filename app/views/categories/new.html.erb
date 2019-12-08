@@ -1,4 +1,4 @@
 <h1>Registrar nova categoria</h1>
 
-<%= render partial: "error_validate", locals: {zone: @zone} %>
-<%= render partial: "form", locals: {zone: @zone} %>
+<%= render "shared/error_validate", object: @category %>
+<%= render "form" %>

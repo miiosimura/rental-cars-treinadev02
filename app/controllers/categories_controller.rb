@@ -1,10 +1,13 @@
 class CategoriesController < ApplicationController
+  before_action :authenticate_user!
+  before_action :authorize_admin
+  before_action :set_category, only: [:show, :edit, :update]
+  
   def index
     @categories = Category.all
   end
 
   def show
-    @category = Category.find(params[:id])
   end
 
   def new
@@ -23,12 +26,9 @@ class CategoriesController < ApplicationController
   end
 
   def edit
-    @category = Category.find(params[:id])
   end
 
   def update
-    @category = Category.find(params[:id])
-
     if @category.update(category_params)
       flash[:notice] = 'Categoria editada com sucesso!'
       redirect_to @category
@@ -40,5 +40,13 @@ class CategoriesController < ApplicationController
   private
   def category_params
     params.require(:category).permit(:name, :daily_rate, :car_insurance, :third_party_insurance)
+  end
+
+  def set_category
+    @category = Category.find(params[:id])
+  end
+
+  def authorize_admin
+    redirect_to root_path, notice: 'Voce nao possui autorizacao para essa acao' unless current_user.admin?
   end
 end

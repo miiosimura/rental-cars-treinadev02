@@ -1,5 +1,5 @@
 class ManufacturersController < ApplicationController
-  before_action :authenticate_user! #faz com que antes de rodar tudo, o usuario tenha que estar logado. Se fosse para estar logado em algumas acoes, so add o only
+  before_action :authenticate_user! #faz com que antes de rodar tudo, o usuario tenha que estar logado. Se fosse para estar logado em algumas acoes, so adicionar o only
   before_action :authorize_admin
   before_action :set_manufacturer, only: [:show, :edit, :update]
 

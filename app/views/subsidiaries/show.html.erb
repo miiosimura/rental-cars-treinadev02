@@ -3,4 +3,5 @@
 <b>Endereço:</b> <%= @subsidiary.address %><br/><br/>
 
 <%= link_to 'Editar', edit_subsidiary_path %><br/>
+<%= link_to 'Excluir Filial', subsidiary_path, method: :delete, data: {confirm: "Tem certeza que deseja excluir esta filial? Todos os carros dependentes desta filial também serão apagados"} %><br/>
 <%= link_to 'Voltar', root_path %><br/>
