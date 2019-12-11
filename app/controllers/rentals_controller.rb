@@ -6,6 +6,9 @@ class RentalsController < ApplicationController
   end
 
   def show
+    #TODO pesquisar diferenca de include e join
+    #@cars = Car.joins(car_model: :category).where(car_models: {categories: @rental.category})    #dessa forma, quero procurar dentro de car o car_model, e dentro do car_model quero ver o category
+    @cars = @rental.category.cars #essa linha é a mesma coisa que a de cima, pode ser feito assim gracas ao through dentro de category
   end
 
   def new
@@ -42,11 +45,20 @@ class RentalsController < ApplicationController
   end
 
   def search
+    #if params[:q].length > 3
+    @rentals = Rental.where('reservation_code like ?', "%#{params[:q]}%")
     
+    # TODO criar a view de search
+    render :search
   end
 
   def start
-    
+    @rental.in_progress! #mesma coisa que fazer @rental.update(status: :in_progress)
+    @car = Car.find(params[:rental][:car_id])
+    @car.unavailable!
+    @rental.create_car_rental(car: @car, price: @car.price) #dessa forma, ele cria um car_rental com o tipo de carro amarrado. Equivale a Rental.create(rental: @rental, car: @car)
+    flash[:notice] = 'Locação iniciada com sucesso!'
+    redirect_to @rental
   end
 
   private

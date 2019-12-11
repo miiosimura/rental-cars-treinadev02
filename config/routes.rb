@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :car_models, only: [:index, :new, :create, :show, :edit, :update]
   resources :cars, only: [:index, :new, :create, :show, :edit, :update]
   resources :rentals, only: [:index, :new, :create, :show, :edit, :update] do
-    get 'search', on: :collection #mais 2 modelos
-    get 'start', on: :member
+    get 'search', on: :collection #para ter o ID depois
+    post 'start', on: :member #member para garantir que tenha um ID antes
   end
 end

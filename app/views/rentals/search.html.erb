@@ -1,0 +1,26 @@
+<% if @rentals.count > 0 %>
+  <%= @rentals.count %> resultado(s) encontrados:<br/>
+
+  <%= @rentals.each do |rental| %>
+    <table>
+      <tr>
+        <th>Data de Inicio</th>
+        <th>Data de Encerramento</th>
+        <th>Cliente</th>
+        <th>Categoria de Carro</th>
+        <th colspan=2>Ação</th>
+      </tr>
+
+      <tr>
+        <td><%= rental.start_date %></td>
+        <td><%= rental.end_date %></td>
+        <td><%= rental.client.name %></td>
+        <td><%= rental.category.name %></td>
+        <td><%= link_to 'Editar Agendamento', edit_rental_path(rental) %></td>
+        <td><%= link_to 'Efetivar Locação', start_rental_path(rental) %></td>
+      </tr>
+    </table>
+  <% end %>
+<% else %>
+  <p>Nenhum resultado foi encontrado</p>
+<% end %>

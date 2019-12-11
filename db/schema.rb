@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_09_201914) do
+ActiveRecord::Schema.define(version: 2019_12_11_203321) do
 
   create_table "car_models", force: :cascade do |t|
     t.string "name"
@@ -25,6 +25,16 @@ ActiveRecord::Schema.define(version: 2019_12_09_201914) do
     t.index ["manufacturer_id"], name: "index_car_models_on_manufacturer_id"
   end
 
+  create_table "car_rentals", force: :cascade do |t|
+    t.integer "car_id"
+    t.integer "rental_id"
+    t.decimal "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["car_id"], name: "index_car_rentals_on_car_id"
+    t.index ["rental_id"], name: "index_car_rentals_on_rental_id"
+  end
+
   create_table "cars", force: :cascade do |t|
     t.string "license_plate"
     t.string "color"
@@ -33,6 +43,7 @@ ActiveRecord::Schema.define(version: 2019_12_09_201914) do
     t.integer "car_model_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "status", default: 0
     t.index ["car_model_id"], name: "index_cars_on_car_model_id"
     t.index ["subsidiary_id"], name: "index_cars_on_subsidiary_id"
   end
@@ -68,6 +79,7 @@ ActiveRecord::Schema.define(version: 2019_12_09_201914) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "reservation_code"
+    t.integer "rental_status", default: 0
     t.index ["category_id"], name: "index_rentals_on_category_id"
     t.index ["client_id"], name: "index_rentals_on_client_id"
   end
