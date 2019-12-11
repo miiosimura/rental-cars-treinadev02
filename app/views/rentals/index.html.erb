@@ -1,7 +1,32 @@
-<%= link_to 'Agendar Locação', new_rental_path %>
+<h3>Locações</h3>
+
+<%= link_to 'Agendar Locação', new_rental_path %><br/><br/>
 
 <%= form_with url: search_rentals_path, local: true, method: :get do %>
   <%= label_tag :q, 'Código' %>
   <%= text_field_tag :q %>
   <%= submit_tag 'Buscar' %>
 <% end %>
+
+<br/><br/>
+
+<table>
+  <tr>
+    <th>Data de Inicio</th>
+    <th>Data de Encerramento</th>
+    <th>Cliente</th>
+    <th>Categoria de Carro</th>
+    <th colspan=2>Ação</th>
+  </tr>
+
+  <% @rentals.each do |rental| %>
+    <tr>
+      <td><%= rental.start_date %></td>
+      <td><%= rental.end_date %></td>
+      <td><%= rental.client.name %></td>
+      <td><%= rental.category.name %></td>
+      <td><%= link_to 'Editar Agendamento', edit_rental_path(rental) %></td>
+      <td><%= link_to 'Efetivar Locação', start_rental_path(rental) %></td>
+    </tr>
+  <% end %>
+</table>

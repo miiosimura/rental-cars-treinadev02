@@ -1,0 +1,11 @@
+<%= form_with model: @rental, local: true do |f| %>
+  <%= f.label :start_date, 'Data de Inicio' %>
+  <%= f.text_field :start_date %>
+  <%= f.label :end_date, 'Data de Encerramento' %>
+  <%= f.text_field :end_date %>
+  <%= f.label :client_id, 'Cliente' %>
+  <%= f.collection_select :client_id, @clients, :id, :description %>
+  <%= f.label :category_id, 'Categoria do Carro' %>
+  <%= f.collection_select :category_id, @categories, :id, :name %>
+  <%= f.submit 'Agendar' %>
+<% end %>

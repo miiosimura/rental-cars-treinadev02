@@ -13,5 +13,9 @@ class Rental < ApplicationRecord
     if end_date < start_date
       errors.add(:end_date, 'deve ser maior que a Data de Inicio')
     end
+
+    if start_date == end_date
+      errors.add(:base, 'A data de inicio deve ser maior que a data de encerramento')
+    end
   end
 end

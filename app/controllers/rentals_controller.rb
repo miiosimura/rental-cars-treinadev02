@@ -1,10 +1,11 @@
 class RentalsController < ApplicationController
-  def index
+  before_action :set_rental, only: [:show, :edit, :update, :start]
 
+  def index
+    @rentals = Rental.all
   end
 
   def show
-    @rental = Rental.find(params[:id])
   end
 
   def new
@@ -25,7 +26,31 @@ class RentalsController < ApplicationController
     end
   end
 
+  def edit
+    @clients = Client.all
+    @categories = Category.all
+  end
+
+  def update
+    if @rental.update(params.require(:rental).permit(:start_date, :end_date, :client_id, :category_id))
+      redirect_to @rental, notice: 'Locação editada con sucesso!'
+    else
+      @clients = Client.all
+      @categories = Category.all
+      render :edit
+    end
+  end
+
   def search
     
+  end
+
+  def start
+    
+  end
+
+  private
+  def set_rental
+    @rental = Rental.find(params[:id])
   end
 end

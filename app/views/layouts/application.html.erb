@@ -10,7 +10,7 @@
   </head>
 
   <body>
-    <%= link_to 'Pagina Inicial', root_path %><br/>
+    <%= link_to 'Home', root_path %><br/>
     <%= link_to 'Clientes', clients_path %><br/>
     <%= link_to 'Locações', rentals_path %><br/>
 
@@ -20,6 +20,7 @@
     <% else %>
       <%= link_to 'Entrar', new_user_session_path %>
     <% end %>
+    <hr>
     <br/><br/>
     <%= notice %>
     <%= alert %>
