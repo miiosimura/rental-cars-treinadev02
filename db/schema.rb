@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_11_203321) do
+ActiveRecord::Schema.define(version: 2019_12_13_180302) do
 
   create_table "car_models", force: :cascade do |t|
     t.string "name"
@@ -71,18 +71,8 @@ ActiveRecord::Schema.define(version: 2019_12_11_203321) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "rentals", force: :cascade do |t|
-    t.date "start_date"
-    t.date "end_date"
-    t.integer "client_id"
-    t.integer "category_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "reservation_code"
-    t.integer "rental_status", default: 0
-    t.index ["category_id"], name: "index_rentals_on_category_id"
-    t.index ["client_id"], name: "index_rentals_on_client_id"
-  end
+# Could not dump table "rentals" because of following StandardError
+#   Unknown type 'reference' for column 'subsidiary'
 
   create_table "subsidiaries", force: :cascade do |t|
     t.string "name"

@@ -61,6 +61,19 @@ class RentalsController < ApplicationController
     redirect_to @rental
   end
 
+  def cars_available?
+    #carros disponiveis
+    car_model = CarModel.where(category: category)
+    total_cars = Car.where(car_model: car_model).count > 0
+
+    #locacoes agendadas
+    total_rentals = Rental.where(category: category, subsidiary: subsidiary)
+                    .where("start_date < ? AND end_date > ?", start_date, end_date)
+                    .count
+
+    (total_cars - total_rentals) > 0
+  end
+
   private
   def set_rental
     @rental = Rental.find(params[:id])
